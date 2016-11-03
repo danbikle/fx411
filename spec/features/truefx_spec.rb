@@ -5,7 +5,7 @@
 # I should have executable:
 # chromedriver
 # in my path.
-# I put it here: ~/.rbenv/shims/chromedriver
+# I put it here: ~/fx411/bin/chromedriver
 
 require 'rails_helper'
 
