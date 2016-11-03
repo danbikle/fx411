@@ -33,9 +33,36 @@ bash
 
 rbenv install 2.3.1; rbenv global  2.3.1; gem install bundler
 
-Then, I clone fx411
+Then, I clone the fx411 repo:
 
 git clone clone https://github.com/danbikle/fx411
+cd /home/fx411/fx411/
+
+Next, I use the bundle command to get fx411-ruby-gems from the web:
+
+bundle install
+
+Then, I should get an account at truefx.com
+
+Next, I enhance /home/fx411/fx411/spec/features/truefx_spec.rb so it has my truefx account info.
+
+Then, I get data from truefx.com with a simple shell command:
+
+cd /home/fx411/fx411/
+bin/rspec spec/features/truefx_spec.rb
+
+The above script should take many hours to run if I use it to download many pairs and months.
+
+The way it is currently written, it should finish in less than five minutes.
+
+The CSV files should appear in this folder:
+
+/home/fx411/Downloads/
+
+I should move them to /home/fx411/truefx/ with these shell commands:
+
+mkdir /home/fx411/truefx/
+mv /home/fx411/Downloads/*USD*20*.zip /home/fx411/truefx/
 
 
 
