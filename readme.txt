@@ -27,7 +27,7 @@ git clone https://github.com/rbenv/rbenv.git      .rbenv
 git clone https://github.com/rbenv/ruby-build.git .rbenv/plugins/ruby-build
 echo 'export PATH="${HOME}/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"'                 >> ~/.bashrc
-echo 'export PATH="${HOME}/bin:$PATH"'        >> ~/.bashrc
+echo 'export PATH="${HOME}/fx411/bin:$PATH"'  >> ~/.bashrc
 
 bash
 
