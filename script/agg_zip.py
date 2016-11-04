@@ -6,7 +6,7 @@
 
 import pandas as pd
 import glob
-fn_l = sorted(glob.glob("/home/fx411/truefx/USD*-2016-09.zip"))
+fn_l = sorted(glob.glob("/home/fx411/truefx/*USD*20*.zip"))
 for fn_s in fn_l:
   print(fn_s[19:33])
   pairmo_s     = fn_s[19:33]
