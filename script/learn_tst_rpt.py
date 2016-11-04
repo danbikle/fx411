@@ -67,7 +67,8 @@ predictions_l = logr_model.predict_proba(xtest_a)[:,1].tolist()
 predictions_df = test_df.copy()[['ts','cp','piplead']]
 predictions_df['prediction'] = predictions_l
 print(predictions_df.tail())
-
+print('pair_s+cnt_i:')
+print('../csv/predictions_'+pair_s+str(cnt_i)+".csv")
     
 'bye'
 
