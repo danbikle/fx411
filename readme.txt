@@ -72,6 +72,7 @@ cd /home/fx411/Downloads/
 wget https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh
 bash Anaconda3-4.2.0-Linux-x86_64.sh
 echo 'export PATH="${HOME}/anaconda3/bin:$PATH"' >> ~/.bashrc
+mv ~/anaconda3/bin/curl  ~/anaconda3/bin/curl_ana
 bash
 
 
