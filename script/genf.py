@@ -21,6 +21,8 @@ for pair_s in pairs_l:
     slope_sr     = 10000.0 * (rollx.mean().cp - rollx.mean().cp.shift(1))/rollx.mean().cp
     g0_df[col_s] = slope_sr
   print(g0_df.tail())
+  # I should write to CSV file to be used later:
+  g0_df.to_csv("../csv/feat"+pair_s+".csv", float_format='%4.4f', index=False)
   
   
 'bye'
