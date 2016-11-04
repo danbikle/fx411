@@ -64,5 +64,15 @@ I should move them to /home/fx411/truefx/ with these shell commands:
 mkdir /home/fx411/truefx/
 mv /home/fx411/Downloads/*USD*20*.zip /home/fx411/truefx/
 
+Then, I should install Anaconda Python with these shell commands:
+
+cd /home/fx411/Downloads/
+wget https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh
+bash Anaconda3-4.2.0-Linux-x86_64.sh
+echo 'export PATH="${HOME}/anaconda3/bin:$PATH"' >> ~/.bashrc
+bash
+
+
+
 
 
