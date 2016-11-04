@@ -7,10 +7,11 @@
 import pandas as pd
 import glob
 fn_l = sorted(glob.glob("/home/fx411/truefx/USD*-2016-09.zip"))
-for pairmo_s in fn_l:
-  print(pairmo_s[19:33])
-  zipf   = '/home/fx411/truefx/'+pairmo_s+'.zip'
-  f10_df = pd.read_csv('/home/fx411/truefx/USDJPY-2016-09.zip', names=['pair','ts0','bid','ask'])
+for fn_s in fn_l:
+  print(fn_s[19:33])
+  pairmo_s     = fn_s[19:33]
+  zipf         = '/home/fx411/truefx/'+pairmo_s+'.zip'
+  f10_df       = pd.read_csv(zipf, names=['pair','ts0','bid','ask'])
   f11_df       =  f10_df.copy()[['pair','ts0']]
   f11_df['cp'] = (f10_df.bid+f10_df.ask)/2
   ts1_l        = [ts[:14] for ts in f11_df.ts0]
