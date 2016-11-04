@@ -22,6 +22,12 @@ pairs_l    = ['AUDUSD','EURUSD','GBPUSD','USDCAD','USDJPY']
 for pair_s in pairs_l:
   print(pair_s)
   p0_df = pd.read_csv("../csv/feat"+pair_s+".csv")
+  # I should build a window which slides from bottom of DF to top.
+  # The window should make jumps rather than sliding one row at a time.
+  # The window width should be same width as DF.
+  # The window length should be wlen_i.
+  # jump size should be jump_i.
+  
 print(p0_df.tail())
   
 'bye'
