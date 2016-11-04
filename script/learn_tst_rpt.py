@@ -66,9 +66,11 @@ logr_model.fit(xtrain_a, class_train_a)
 predictions_l = logr_model.predict_proba(xtest_a)[:,1].tolist()
 predictions_df = test_df.copy()[['ts','cp','piplead']]
 predictions_df['prediction'] = predictions_l
+predictions_df['eff'] = np.sign(predictions_df.prediction - 0.5) * predictions_df.piplead
+predictions_df['acc'] = (predictions_df.eff > 0)
 print(predictions_df.tail())
-print('pair_s+cnt_i:')
-print('../csv/predictions_'+pair_s+str(cnt_i)+".csv")
-    
+fn_s = "../csv/predictions_"+pair_s+str(100+cnt_i)+".csv" 
+predictions_df.to_csv(fn_s, float_format='%4.4f', index=False)
+
 'bye'
 
