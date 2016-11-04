@@ -18,7 +18,7 @@ import pandas as pd
 import numpy  as np
 import pdb
    
-pairs_l    = ['AUDUSD','EURUSD','GBPUSD','USDCAD','USDJPY']
+pairs_l    = ['AUDUSD','EURUSD']#,'GBPUSD','USDCAD','USDJPY']
 for pair_s in pairs_l:
   print(pair_s)
   p0_df = pd.read_csv("../csv/feat"+pair_s+".csv")
@@ -27,8 +27,20 @@ for pair_s in pairs_l:
   # The window width should be same width as DF.
   # The window length should be wlen_i.
   # jump size should be jump_i.
+  # The number of jumps should be jumpc_i.
   
 print(p0_df.tail())
-  
+
+wlen_i     = 4
+jump_i     = 4
+test_end_i = len(p0_df)
+jumpc_i    = 0
+
+while jumpc_i < 3:
+    print(jumpc_i)
+    print(p0_df.ts[(test_end_i-wlen_i):test_end_i])
+    test_end_i -= jump_i
+    jumpc_i += 1
+    
 'bye'
 
