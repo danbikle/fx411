@@ -46,8 +46,10 @@ Then, I should get an account at truefx.com
 
 Next, I enhance /home/fx411/fx411/spec/features/truefx_spec.rb so it has my truefx account info.
 
-Then, I get data from truefx.com with a simple shell command:
+Then, I get data from truefx.com with simple shell commands:
 
+cd /home/fx411/
+mkdir -p truefx csv
 cd /home/fx411/fx411/
 bin/rspec spec/features/truefx_spec.rb
 
