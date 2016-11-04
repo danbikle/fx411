@@ -16,6 +16,8 @@
 
 import pandas as pd
 import numpy  as np
+from sklearn import linear_model
+
 import pdb
 
 # I should use a nested loop to generate predictions from a window which slides over several pairs.
@@ -49,9 +51,10 @@ for cnt_i in range(jumpc_i,0,-1):
     test_start_i  = test_end_i-wlen_i
     train_end_i   = test_start_i - 2*duration_i # Avoid overlap
     train_start_i = train_end_i - trainsize_i
-    train_df = p0_df[train_start_i:train_end_i]
-    test_df  = p0_df[test_start_i:test_end_i]
-    test_end_i -= jump_i
+    train_df      = p0_df[train_start_i:train_end_i]
+    test_df       = p0_df[test_start_i:test_end_i]
+    test_end_i   -= jump_i
+    logr_model    = linear_model.LogisticRegression()
     
 'bye'
 
