@@ -33,15 +33,13 @@ print(p0_df.tail())
 
 wlen_i     = 100
 jump_i     = wlen_i # Avoids prediction 'overlap'
-test_end_i = len(p0_df)-1
+test_end_i = len(p0_df)
 jumpc_i    = 3
-cnt_i      = 0
-while cnt_i < jumpc_i:
-    print(cnt_i)
+for cnt_i in range(jumpc_i,0,-1):
     print(p0_df.ts[(test_end_i-wlen_i):test_end_i].head())
     print(p0_df.ts[(test_end_i-wlen_i):test_end_i].tail())
     test_end_i -= jump_i
-    cnt_i += 1
+
     
 'bye'
 
