@@ -31,16 +31,17 @@ for pair_s in pairs_l:
   
 print(p0_df.tail())
 
-wlen_i     = 4
-jump_i     = 4
-test_end_i = len(p0_df)
-jumpc_i    = 0
-
-while jumpc_i < 3:
-    print(jumpc_i)
-    print(p0_df.ts[(test_end_i-wlen_i):test_end_i])
+wlen_i     = 100
+jump_i     = wlen_i # Avoids prediction 'overlap'
+test_end_i = len(p0_df)-1
+jumpc_i    = 3
+cnt_i      = 0
+while cnt_i < jumpc_i:
+    print(cnt_i)
+    print(p0_df.ts[(test_end_i-wlen_i):test_end_i].head())
+    print(p0_df.ts[(test_end_i-wlen_i):test_end_i].tail())
     test_end_i -= jump_i
-    jumpc_i += 1
+    cnt_i += 1
     
 'bye'
 
