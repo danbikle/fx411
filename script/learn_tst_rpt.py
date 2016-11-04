@@ -14,5 +14,13 @@
 # ../csv/predictionsUSDJPY.csv
 # Next it should report effectiveness and accuracy of the predictions.
 
-
+import pandas as pd
+import numpy  as np
+import pdb
    
+pairs_l    = ['AUDUSD','EURUSD','GBPUSD','USDCAD','USDJPY']
+for pair_s in pairs_l:
+  print(pair_s)
+
+'bye'
+
