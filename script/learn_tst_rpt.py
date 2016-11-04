@@ -55,6 +55,12 @@ for cnt_i in range(jumpc_i,0,-1):
     test_df       = p0_df[test_start_i:test_end_i]
     test_end_i   -= jump_i
     logr_model    = linear_model.LogisticRegression()
+
+xtrain_a      = np.array(train_df)[:,3:]
+xtest_a      = np.array(test_df)[:,3:]
+ytrain_sr     = train_df.piplead
+class_train_a = (ytrain_sr > 0.0)
+
     
 'bye'
 
