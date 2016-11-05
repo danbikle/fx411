@@ -65,8 +65,9 @@ for cnt_i in range(jumpc_i,0,-1):
     predictions_df['prediction'] = predictions_l
     predictions_df['eff'] = np.sign(predictions_df.prediction - 0.5) * predictions_df.piplead
     predictions_df['acc'] = (predictions_df.eff > 0)
-    fn_s = "../csv/predictions_"+pair_s+str(100+cnt_i)+".csv" 
+    fn_s = "../csv/predictions_"+pair_s+str(1000+cnt_i)+".csv" 
     predictions_df.to_csv(fn_s, float_format='%4.4f', index=False)
+    print(fn_s)
 
 'bye'
 
