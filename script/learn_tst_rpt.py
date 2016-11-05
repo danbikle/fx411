@@ -58,7 +58,7 @@ for cnt_i in range(jumpc_i,0,-1):
     xtest_a      = np.array(test_df)[:,3:]
     ytrain_sr     = train_df.piplead
     class_train_a = (ytrain_sr > 0.0)
-    print('logr_model.fit(xtrain_a, class_train_a)')
+    logr_model.fit(xtrain_a, class_train_a)
     # I should predict
     predictions_l = logr_model.predict_proba(xtest_a)[:,1].tolist()
     predictions_df = test_df.copy()[['ts','cp','piplead']]
