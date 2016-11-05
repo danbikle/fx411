@@ -30,13 +30,13 @@ import pdb
 # jump size should be jump_i.
 # The number of jumps should be jumpc_i.
   
-wlen_i      = 2000
+wlen_i      = 100
 jump_i      = wlen_i # Avoids prediction 'overlap'
 trainsize_i = 4000 # Size of training data before the window AKA the test-window.
 # I should define the number of observations I hold a pair after I buy/sell it.
 # Observations are separated by 5 min. One hour is 12 observations:
 duration_i = 12 # Hold for 1 hour then act on next prediction.
-pairs_l    = ['AUDUSD','EURUSD']#,'GBPUSD','USDCAD','USDJPY']
+pairs_l    = ['AUDUSD','EURUSD','GBPUSD','USDCAD','USDJPY']
 for pair_s in pairs_l:
   print(pair_s)
   p0_df      = pd.read_csv("../csv/feat"+pair_s+".csv")
