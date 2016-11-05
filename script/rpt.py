@@ -22,6 +22,6 @@ for pair_s in pairs_l:
     print(pair_s+" Effectiveness:")
     print(np.sum(p0_df.eff))
     print(pair_s+" Accuracy:")
-    print(100 * np.sum(p0_df.acc) / len(p0_df.acc))
+    print(str(100 * np.sum(p0_df.acc) / len(p0_df.acc))+' %')
 
 'bye'
