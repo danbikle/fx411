@@ -2,7 +2,7 @@
 
 # This script should report accuracy and effectiveness of predictions in ../csv/predictions_*.csv
 
-import os
+import os,glob
 import pandas as pd
 import numpy  as np
 import pdb
@@ -14,7 +14,14 @@ for pair_s in pairs_l:
     # inspiration:
     # sort -u ../csv/predictions_AUDUSD*.csv|grep 0> ../csv/predictionsAUDUSD.csv
     if len(fn_l) > 0 :
-        fn_s = "../csv/predictions"+pair_s+".csv"
-        os.system("sort -u ../csv/predictions_"+pair_s+"*.csv|grep 0>"+fn_s)
-p0_df = pd.read_csv(fn_s,names=['ts','cp','piplead','eff','acc'])
+        cmd0_s = "sort -u ../csv/predictions_"+pair_s+"*.csv|grep 0 > "
+        fn_s   = "../csv/predictions"+pair_s+".csv"
+        cmd1_s = cmd0_s + fn_s
+        print(cmd1_s)
+        os.system(cmd1_s)
+        p0_df = pd.read_csv(fn_s,names=['ts','cp','piplead','eff','acc'])
+        print(p0_df.head())
+        print(pair_s+" Effectiveness:")
+        print(np.sum(p0_df.eff))
+
 'bye'
