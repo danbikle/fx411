@@ -30,7 +30,7 @@ import pdb
 # jump size should be jump_i.
 # The number of jumps should be jumpc_i.
   
-wlen_i      = 1000
+wlen_i      = 2000
 jump_i      = wlen_i # Avoids prediction 'overlap'
 trainsize_i = 4000 # Size of training data before the window AKA the test-window.
 # I should define the number of observations I hold a pair after I buy/sell it.
@@ -45,7 +45,7 @@ for pair_s in pairs_l:
   # If each jump is small, I can make more jumps:
   jumpc_i    = int((len(p0_df)-trainsize_i-100) / jump_i)-1
   # Above expression keeps my jumps inside of p0_df.
-for cnt_i in range(jumpc_i,0,-1):
+  for cnt_i in range(jumpc_i,0,-1):
     # I should build a model here
     test_start_i  = test_end_i-wlen_i
     train_end_i   = test_start_i - 2*duration_i # Avoid overlap
