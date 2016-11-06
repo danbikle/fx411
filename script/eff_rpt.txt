@@ -94,4 +94,133 @@ trainsize_i = 13000 # Size of training data before the window AKA the test-windo
 
 Result:
 
+           ts      cp  piplead  prediction      eff    acc
+0  1247191500  0.7837   3.0878      0.5107   3.0878   True
+1  1247191800  0.7840  -0.8801      0.5194  -0.8801  False
+2  1247192100  0.7845  -5.5066      0.5132  -5.5066  False
+3  1247192400  0.7847  -5.7349      0.5237  -5.7349  False
+4  1247192700  0.7850 -18.1393      0.5319 -18.1393  False
+AUDUSD Effectiveness:
+-578.1964000000656
+AUDUSD Accuracy:
+50.6766760899 %
+           ts      cp  piplead  prediction     eff    acc
+0  1247194800  1.4035  -2.1090      0.5095 -2.1090  False
+1  1247195100  1.4033  -0.4774      0.5207 -0.4774  False
+2  1247195400  1.4034  -2.3158      0.5247 -2.3158  False
+3  1247195700  1.4035  -1.4749      0.5339 -1.4749  False
+4  1247196000  1.4036  -3.3700      0.5153 -3.3700  False
+EURUSD Effectiveness:
+5085.201099998937
+EURUSD Accuracy:
+51.3804241718 %
+           ts      cp  piplead  prediction     eff    acc
+0  1247200800  1.6348  -4.0921      0.5114 -4.0921  False
+1  1247201100  1.6345  -2.1352      0.5210 -2.1352  False
+2  1247201400  1.6343  -2.5637      0.5221 -2.5637  False
+3  1247201700  1.6339   0.0490      0.5217  0.0490   True
+4  1247202000  1.6337   0.7529      0.5233  0.7529   True
+GBPUSD Effectiveness:
+22665.958399999585
+GBPUSD Accuracy:
+51.2226742619 %
+           ts      cp  piplead  prediction     eff   acc
+0  1247199000  1.1622  -1.2218      0.4795  1.2218  True
+1  1247199300  1.1621  -2.0308      0.4842  2.0308  True
+2  1247199600  1.1622  -2.9514      0.4829  2.9514  True
+3  1247199900  1.1620  -2.3063      0.4866  2.3063  True
+4  1247200200  1.1620  -1.7729      0.4905  1.7729  True
+USDCAD Effectiveness:
+11761.167000000718
+USDCAD Accuracy:
+50.5524059695 %
+           ts       cp  piplead  prediction      eff   acc
+0  1247194200  93.0634 -14.2714      0.4674  14.2714  True
+1  1247194500  93.0466 -13.7012      0.4739  13.7012  True
+2  1247194800  93.0180  -7.4516      0.4713   7.4516  True
+3  1247195100  93.0296  -5.0697      0.4707   5.0697  True
+4  1247195400  93.0055  -1.6739      0.4780   1.6739  True
+USDJPY Effectiveness:
+-27956.505300000943
+USDJPY Accuracy:
+51.3836893627 %
+fx411@e80:~/fx411/script $
 
+
+oooooooooooooooooooooooooooooo
+
+features same as before
+
+But now trainsize_i is larger.
+
+wlen_i      = 50
+jump_i      = wlen_i # Avoids prediction 'overlap'
+trainsize_i = 15000 # Size of training data before the window AKA the test-window.
+
+Result:
+
+           ts      cp  piplead  prediction      eff    acc
+0  1248138000  0.8140  -2.8745      0.5033  -2.8745  False
+1  1248138300  0.8140   1.3023      0.5049   1.3023   True
+2  1248138600  0.8137  13.2721      0.5070  13.2721   True
+3  1248138900  0.8132  19.9951      0.5233  19.9951   True
+4  1248139200  0.8129  23.2118      0.5314  23.2118   True
+AUDUSD Effectiveness:
+11906.189699999692
+AUDUSD Accuracy:
+50.8010468828 %
+           ts      cp  piplead  prediction     eff    acc
+0  1248142800  1.4225  -0.8155      0.5088 -0.8155  False
+1  1248143100  1.4224   0.0492      0.5068  0.0492   True
+2  1248143400  1.4223  -1.3148      0.5129 -1.3148  False
+3  1248143700  1.4226  -2.0526      0.5181 -2.0526  False
+4  1248144000  1.4229  -4.1394      0.5127 -4.1394  False
+EURUSD Effectiveness:
+13695.04949999929
+EURUSD Accuracy:
+51.4453176533 %
+           ts      cp  piplead  prediction     eff   acc
+0  1248147300  1.6538   4.3718      0.5092  4.3718  True
+1  1248147600  1.6540   4.8427      0.5107  4.8427  True
+2  1248147900  1.6544   3.3064      0.5090  3.3064  True
+3  1248148200  1.6546   0.6648      0.5052  0.6648  True
+4  1248148500  1.6545   2.7379      0.5051  2.7379  True
+GBPUSD Effectiveness:
+17403.255899999138
+GBPUSD Accuracy:
+51.1919209431 %
+           ts      cp  piplead  prediction     eff   acc
+0  1248148800  1.1066  -3.7953      0.4760  3.7953  True
+1  1248149100  1.1065  -1.7532      0.4645  1.7532  True
+2  1248149400  1.1066  -1.7622      0.4622  1.7622  True
+3  1248149700  1.1067  -2.6384      0.4668  2.6384  True
+4  1248150000  1.1066  -1.7080      0.4693  1.7080  True
+USDCAD Effectiveness:
+10030.827400000964
+USDCAD Accuracy:
+50.5224377772 %
+           ts       cp  piplead  prediction     eff    acc
+0  1248141600  94.2203   1.9943      0.5219  1.9943   True
+1  1248141900  94.2528   0.2176      0.5090  0.2176   True
+2  1248142200  94.2778   0.7198      0.4979 -0.7198  False
+3  1248142500  94.2817  -0.8722      0.4887  0.8722   True
+4  1248142800  94.2902  -1.8056      0.4907  1.8056   True
+USDJPY Effectiveness:
+-19338.903200000546
+USDJPY Accuracy:
+51.5805738768 %
+fx411@e80:~/fx411/script $
+
+
+
+oooooooooooooooooooooooooooooo
+
+features same as before
+
+But now trainsize_i is larger.
+
+wlen_i      = 50
+jump_i      = wlen_i # Avoids prediction 'overlap'
+trainsize_i = 17000 # Size of training data before the window AKA the test-window.
+
+Result:
