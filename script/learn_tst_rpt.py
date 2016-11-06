@@ -35,7 +35,7 @@ os.system(cmd1_s)
 
 wlen_i = 50
 jump_i = wlen_i # Avoids prediction 'overlap'
-for trainsize_i in range(11000, 11000+2000*2, 2000):
+for trainsize_i in range(9000, 9000+2000*64, 2000):
   print('Busy ooooooooooooooooooooooooooo')
   #trainsize_i = 17000 # Size of training data before the window AKA the test-window.
   # I should define the number of observations I hold a pair after I buy/sell it.
@@ -49,7 +49,7 @@ for trainsize_i in range(11000, 11000+2000*2, 2000):
     # If each jump is small, I can make more jumps:
     jumpc_i    = int((len(p0_df)-trainsize_i-100) / jump_i)-1
     # debug
-    jumpc_i = 4
+    jumpc_i = 64
     # debug
     # Above expression keeps my jumps inside of p0_df.
     for cnt_i in range(jumpc_i,0,-1):
@@ -85,14 +85,14 @@ for trainsize_i in range(11000, 11000+2000*2, 2000):
       fn_s   = "../csv/predictions"+str(trainsize_i)+pair_s+".csv"
       os.system(cmd0_s + fn_s)
       p0_df = pd.read_csv(fn_s,names=['ts','cp','piplead','prediction','eff','acc'])
-      print('trainsize_i:')
-      print(trainsize_i)
       print(pair_s+" Effectiveness:")
       eff_pair = np.sum(p0_df.eff)
       print(eff_pair)
       eff_sum_f = eff_sum_f + eff_pair
       print(pair_s+" Accuracy:")
       print(str(100 * np.sum(p0_df.acc) / len(p0_df.acc))+' %')
+  print('trainsize_i:')
+  print(trainsize_i)
   print('eff_sum_f:')
   print(eff_sum_f)
   # I should remove unneeded files:
