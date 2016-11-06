@@ -16,7 +16,12 @@
 import pandas as pd
 import numpy  as np
 from sklearn import linear_model
+import os,glob
 import pdb
+
+# I should remove unneeded files:
+cmd1_s = "rm -f ../csv/predictions_*.csv"
+os.system(cmd1_s)
 
 # I should use a nested loop to generate predictions from a window which slides over several pairs.
 # Sometimes I call this window the test-window because it should contain test-data.
@@ -27,24 +32,24 @@ import pdb
 # The window length should be wlen_i.
 # jump size should be jump_i.
 # The number of jumps should be jumpc_i.
-  
-wlen_i      = 50
-jump_i      = wlen_i # Avoids prediction 'overlap'
-for trainsize_i in range(17000, 17000+3000*20, 3000):
+
+wlen_i = 50
+jump_i = wlen_i # Avoids prediction 'overlap'
+for trainsize_i in range(17000, 17000+3000*2, 3000):
+  print('Busy ooooooooooooooooooooooooooo')
   #trainsize_i = 17000 # Size of training data before the window AKA the test-window.
   # I should define the number of observations I hold a pair after I buy/sell it.
   # Observations are separated by 5 min. One hour is 12 observations:
   duration_i = 12 # Hold for 1 hour then act on next prediction.
   pairs_l    = ['AUDUSD','EURUSD','GBPUSD','USDCAD','USDJPY']
   for pair_s in pairs_l:
-    print(pair_s)
     p0_df      = pd.read_csv("../csv/feat"+pair_s+".csv")
     test_end_i = len(p0_df)-duration_i # avoid observations where piplead unknown.
     # I should control how many times I jump the window.
     # If each jump is small, I can make more jumps:
     jumpc_i    = int((len(p0_df)-trainsize_i-100) / jump_i)-1
     # debug
-    #jumpc_i = 10
+    jumpc_i = 4
     # debug
     # Above expression keeps my jumps inside of p0_df.
     for cnt_i in range(jumpc_i,0,-1):
@@ -69,10 +74,7 @@ for trainsize_i in range(17000, 17000+3000*20, 3000):
       predictions_df['acc'] = (predictions_df.eff > 0)
       fn_s = "../csv/predictions_"+pair_s+str(1000+cnt_i)+".csv" 
       predictions_df.to_csv(fn_s, float_format='%4.4f', index=False)
-      print(fn_s)
-  
-  import os,glob
-  
+  eff_sum_f = 0
   for pair_s in pairs_l:
     fn_l = glob.glob("../csv/predictions_"+pair_s+"*.csv")
     # For this pair I should sort and make uniq and output to single file
@@ -80,14 +82,21 @@ for trainsize_i in range(17000, 17000+3000*20, 3000):
     # sort -u ../csv/predictions_AUDUSD*.csv|grep 0> ../csv/predictionsAUDUSD.csv
     if len(fn_l) > 0 :
       cmd0_s = "sort -u ../csv/predictions_"+pair_s+"*.csv|grep 0 > "
-      fn_s   = "../csv/predictions"+pair_s+".csv"
+      fn_s   = "../csv/predictions"+str(trainsize_i)+pair_s+".csv"
       os.system(cmd0_s + fn_s)
       p0_df = pd.read_csv(fn_s,names=['ts','cp','piplead','prediction','eff','acc'])
-      print(p0_df.head())
       print('trainsize_i:')
       print(trainsize_i)
       print(pair_s+" Effectiveness:")
-      print(np.sum(p0_df.eff))
+      eff_pair = np.sum(p0_df.eff)
+      print(eff_pair)
+      eff_sum_f = eff_sum_f + eff_pair
       print(pair_s+" Accuracy:")
       print(str(100 * np.sum(p0_df.acc) / len(p0_df.acc))+' %')
+  print('eff_sum_f:')
+  print(eff_sum_f)
+  # I should remove unneeded files:
+  cmd1_s = "rm -f ../csv/predictions_*.csv"
+  os.system(cmd1_s)
+
 'bye'
