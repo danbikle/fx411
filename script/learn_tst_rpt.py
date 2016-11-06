@@ -35,7 +35,7 @@ os.system(cmd1_s)
 
 wlen_i = 50
 jump_i = wlen_i # Avoids prediction 'overlap'
-for trainsize_i in range(17000, 17000+3000*2, 3000):
+for trainsize_i in range(11000, 11000+2000*2, 2000):
   print('Busy ooooooooooooooooooooooooooo')
   #trainsize_i = 17000 # Size of training data before the window AKA the test-window.
   # I should define the number of observations I hold a pair after I buy/sell it.
