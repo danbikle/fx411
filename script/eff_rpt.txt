@@ -1,0 +1,97 @@
+~/fx411/script/eff_rpt.txt
+
+# genf1.py
+
+# This script should generate features from timestamps and prices.
+import pandas as pd
+import numpy  as np
+# I should specify duration I hold a pair after I act on a prediction:
+duration_i = 12 # 12 means 12 * 5 which is 1 hour which is 3600 seconds
+pairs_l    = ['AUDUSD','EURUSD','GBPUSD','USDCAD','USDJPY']
+for pair_s in pairs_l:
+  print(pair_s+' Busy...')
+  g0_df = pd.read_csv("../csv/"+pair_s+".csv", names=['ts','cp'])
+  # I should compute dependent variable, piplead:
+  g0_df['piplead'] = (10000.0*(g0_df.cp.shift(-duration_i) - g0_df.cp) / g0_df.cp).fillna(0)
+  # I should compute piplags 1,2,4,8
+  g0_df['piplag1'] = (10000.0*(g0_df.cp - g0_df.cp.shift(duration_i*1)) / g0_df.cp).fillna(0)
+  g0_df['piplag2'] = (10000.0*(g0_df.cp - g0_df.cp.shift(duration_i*2)) / g0_df.cp).fillna(0)
+  g0_df['piplag3'] = (10000.0*(g0_df.cp - g0_df.cp.shift(duration_i*3)) / g0_df.cp).fillna(0)
+  g0_df['piplag4'] = (10000.0*(g0_df.cp - g0_df.cp.shift(duration_i*4)) / g0_df.cp).fillna(0)
+  g0_df['piplag5'] = (10000.0*(g0_df.cp - g0_df.cp.shift(duration_i*5)) / g0_df.cp).fillna(0)
+  # I should write to CSV file to be used later:
+  g0_df.to_csv("../csv/feat"+pair_s+".csv", float_format='%4.4f', index=False)
+  
+'bye'
+
+wlen_i      = 50
+jump_i      = wlen_i # Avoids prediction 'overlap'
+trainsize_i = 11000 # Size of training data before the window AKA the test-window.
+
+
+fx411@e80:~/fx411/script $ python rpt.py 
+           ts      cp  piplead  prediction     eff    acc
+0  1246418100  0.8066  -0.1860      0.5186 -0.1860  False
+1  1246418400  0.8064   0.6572      0.5217  0.6572   True
+2  1246418700  0.8065  -1.1655      0.5250 -1.1655  False
+3  1246419000  0.8070  -8.6125      0.5271 -8.6125  False
+4  1246419300  0.8069  -9.2205      0.5346 -9.2205  False
+AUDUSD Effectiveness:
+-9040.380600000051
+AUDUSD Accuracy:
+50.6408365479 %
+           ts      cp  piplead  prediction     eff   acc
+0  1246421700  1.4030   4.1055      0.5010  4.1055  True
+1  1246422000  1.4030   2.8011      0.5047  2.8011  True
+2  1246422300  1.4029   4.0702      0.5075  4.0702  True
+3  1246422600  1.4029   4.1985      0.5028  4.1985  True
+4  1246422900  1.4029   4.5050      0.5037  4.5050  True
+EURUSD Effectiveness:
+3379.6378999995845
+EURUSD Accuracy:
+51.2619595472 %
+           ts      cp  piplead  prediction     eff    acc
+0  1246427100  1.6464   0.2976      0.5246  0.2976   True
+1  1246427400  1.6465   0.1883      0.5231  0.1883   True
+2  1246427700  1.6465  -0.4312      0.5200 -0.4312  False
+3  1246428000  1.6463   1.4760      0.5213  1.4760   True
+4  1246428300  1.6464   2.7029      0.5263  2.7029   True
+GBPUSD Effectiveness:
+4311.854399999925
+GBPUSD Accuracy:
+51.0251612502 %
+           ts      cp  piplead  prediction     eff    acc
+0  1246424100  1.1623   2.7188      0.4932 -2.7188  False
+1  1246424400  1.1627  -5.2290      0.4935  5.2290   True
+2  1246424700  1.1624   0.4387      0.4926 -0.4387  False
+3  1246425000  1.1628  -2.1586      0.4897  2.1586   True
+4  1246425300  1.1625  -0.1290      0.5001 -0.1290  False
+USDCAD Effectiveness:
+20707.185000000543
+USDCAD Accuracy:
+50.4545575324 %
+           ts       cp  piplead  prediction     eff    acc
+0  1246420200  96.3139   2.8331      0.5134  2.8331   True
+1  1246420500  96.3107   3.1170      0.5037  3.1170   True
+2  1246420800  96.3416   2.3269      0.4860 -2.3269  False
+3  1246421100  96.3579  -1.3434      0.4848  1.3434   True
+4  1246421400  96.3458  -0.5767      0.4872  0.5767   True
+USDJPY Effectiveness:
+-38308.59510000132
+USDJPY Accuracy:
+51.3208659459 %
+fx411@e80:~/fx411/script $
+
+oooooooooooooooooooooooooooooo
+
+features same as before
+
+But now trainsize_i is larger.
+
+wlen_i      = 50
+jump_i      = wlen_i # Avoids prediction 'overlap'
+trainsize_i = 13000 # Size of training data before the window AKA the test-window.
+
+Result:
+
+
