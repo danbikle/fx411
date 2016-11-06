@@ -44,7 +44,7 @@ for trainsize_i in range(17000, 17000+3000*20, 3000):
     # If each jump is small, I can make more jumps:
     jumpc_i    = int((len(p0_df)-trainsize_i-100) / jump_i)-1
     # debug
-    #  jumpc_i = 400
+    #jumpc_i = 10
     # debug
     # Above expression keeps my jumps inside of p0_df.
     for cnt_i in range(jumpc_i,0,-1):
