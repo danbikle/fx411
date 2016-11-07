@@ -34,6 +34,7 @@ for fn in fn_l:
     eff_sum = np.sum(r0_df.eff)
     print(eff_sum)
     all_sum = all_sum+eff_sum
+    print(fn)
 print(all_sum)
 
 'bye'
