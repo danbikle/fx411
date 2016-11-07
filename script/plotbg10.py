@@ -30,6 +30,6 @@ p1_df['Logistic_Regression'] = green_l
 p2_df = p1_df.set_index(['dt'])
 p3_df = p2_df[['cp','Logistic_Regression']]
 p3_df.columns = [['Price','Logistic_Regression']]
-p3_df.plot.line(title="EUR/USD Price vs. Logistic Regression Predictions")
+p3_df.plot.line(title="PAIR Price vs. Logistic Regression Predictions")
 plt.show()
 'bye'
