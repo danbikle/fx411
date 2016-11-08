@@ -1,8 +1,9 @@
 # agg_zip.py
 
-# This script should read a zip file.
-# Then it should groupby timestamp and find the mean of (bid+ask)/2
-# Finally it should output a CSV file with aggregated current_price.
+# This script should read zip files.
+# For each file it should compute current price from (bid+ask)/2.
+# Next, it should groupby timestamps truncated to 5 minute boundries.
+# Finally it should output a CSV file with mean of current_price for each 5 minute boundry.
 
 import pandas as pd
 import glob
