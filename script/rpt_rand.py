@@ -36,23 +36,19 @@ for fn in sorted(fn_l):
     pair_s      = fn[-10:-4]
     pair_trainsize_eff_acc_l.append([pair_s,trainsize_i,eff_sum,acc_pct])
 pair_trainsize_eff_acc_a  = np.array(pair_trainsize_eff_acc_l)
-pair_trainsize_eff_acc_df = pd.DataFrame({'pair':pair_trainsize_eff_acc_a[:,0]
+pair_trainsize_eff_acc_df = pd.DataFrame({'pair':  pair_trainsize_eff_acc_a[:,0]
                                       ,'trainsize':pair_trainsize_eff_acc_a[:,1]
-                                      ,'eff':pair_trainsize_eff_acc_a[:,2]
-                                      ,'acc':pair_trainsize_eff_acc_a[:,3]
+                                      ,'eff':      pair_trainsize_eff_acc_a[:,2]
+                                      ,'acc':      pair_trainsize_eff_acc_a[:,3]
 })
 print(pair_trainsize_eff_acc_df.head())
-ptea0_df = pair_trainsize_eff_acc_df.copy()
-
 
 # I should change eff and acc to floats:
-eff_l = [float(my_s) for my_s in ptea0_df.eff]
-acc_l = [float(my_s) for my_s in ptea0_df.acc]
-
-# I should search for best trainsize
-
+eff_l    = [float(my_s) for my_s in pair_trainsize_eff_acc_df.eff]
+acc_l    = [float(my_s) for my_s in pair_trainsize_eff_acc_df.acc]
 ptea1_df = pair_trainsize_eff_acc_df.copy()[['pair','trainsize']]
 ptea1_df['eff'] = eff_l
+ptea1_df['acc'] = acc_l
 
 # I should search for best trainsize
 gb1_df = ptea1_df.groupby(['trainsize']).eff.sum()
