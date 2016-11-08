@@ -21,8 +21,6 @@ r0_df = pd.read_csv('../csv/predictions93000EURUSD.csv',names=['ts','price','pip
 # I should aggregate
 eff_sum = np.sum(r0_df.eff)
 
-
-
 fn_l = glob.glob('../csv/predictions*.csv')
 
 all_sum = 0
@@ -31,7 +29,7 @@ for fn in sorted(fn_l):
     r0_df = pd.read_csv(fn,names=['ts','price','piplead','prediction','eff','acc'])
     eff_sum     = np.sum(r0_df.eff)
     all_sum     = all_sum+eff_sum
-    acc_pct = np.round(100*np.sum(r0_df.acc) / len(r0_df),1)
+    acc_pct     = np.round(100*np.sum(r0_df.acc) / len(r0_df),1)
     trainsize_i = fn[18:-10]
     pair_s      = fn[-10:-4]
     pair_trainsize_eff_acc_l.append([pair_s,trainsize_i,eff_sum,acc_pct])
