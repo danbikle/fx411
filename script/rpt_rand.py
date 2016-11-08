@@ -26,7 +26,7 @@ eff_sum = np.sum(r0_df.eff)
 fn_l = glob.glob('../csv/predictions*.csv')
 
 all_sum = 0
-pair_trainsize_eff_l = []
+pair_trainsize_eff_acc_l = []
 for fn in sorted(fn_l):
     r0_df = pd.read_csv(fn,names=['ts','price','piplead','prediction','eff','acc'])
     eff_sum     = np.sum(r0_df.eff)
@@ -34,24 +34,24 @@ for fn in sorted(fn_l):
     acc_pct = np.round(100*np.sum(r0_df.acc) / len(r0_df),1)
     trainsize_i = fn[18:-10]
     pair_s      = fn[-10:-4]
-    pair_trainsize_eff_l.append([pair_s,trainsize_i,eff_sum,acc_pct])
-pair_trainsize_eff_a  = np.array(pair_trainsize_eff_l)
-pair_trainsize_eff_df = pd.DataFrame({'pair':pair_trainsize_eff_a[:,0]
-                                      ,'trainsize':pair_trainsize_eff_a[:,1]
-                                      ,'eff':pair_trainsize_eff_a[:,2]
-                                      ,'acc':pair_trainsize_eff_a[:,3]
+    pair_trainsize_eff_acc_l.append([pair_s,trainsize_i,eff_sum,acc_pct])
+pair_trainsize_eff_acc_a  = np.array(pair_trainsize_eff_acc_l)
+pair_trainsize_eff_acc_df = pd.DataFrame({'pair':pair_trainsize_eff_acc_a[:,0]
+                                      ,'trainsize':pair_trainsize_eff_acc_a[:,1]
+                                      ,'eff':pair_trainsize_eff_acc_a[:,2]
+                                      ,'acc':pair_trainsize_eff_acc_a[:,3]
 })
-print(pair_trainsize_eff_df.head())
-ptea0_df = pair_trainsize_eff_df.copy()
+print(pair_trainsize_eff_acc_df.head())
+ptea0_df = pair_trainsize_eff_acc_df.copy()
 
-# I should search for best trainsize
-gb0_df = ptea0_df[['trainsize','eff']].groupby(['trainsize']).eff.sum()
-print(gb0_df.head())
 
 # I should change eff and acc to floats:
 eff_l = [float(my_s) for my_s in ptea0_df.eff]
 acc_l = [float(my_s) for my_s in ptea0_df.acc]
-ptea1_df = ptea0_df.copy()[['trainsize']]
+
+# I should search for best trainsize
+
+ptea1_df = pair_trainsize_eff_acc_df.copy()[['pair','trainsize']]
 ptea1_df['eff'] = eff_l
 
 # I should search for best trainsize
