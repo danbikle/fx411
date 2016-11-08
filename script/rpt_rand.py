@@ -51,6 +51,7 @@ ptea1_df['acc'] = acc_l
 # I should search for best trainsize
 gb1_df = ptea1_df.groupby(['trainsize']).eff.sum()
 print(gb1_df.head())
+print(gb1_df.sort(by='eff').head())
 
 
 'bye'
