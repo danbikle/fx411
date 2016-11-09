@@ -3,7 +3,7 @@
 # This script should transform a csv file into a DataFrame and then into blue-green-visualization.
 
 import pandas as pd
-import matplotlib.pyplot as plt
+
 
 # I should get the filename from the command line.
 
@@ -42,7 +42,18 @@ p3_df = p2_df[['cp','Logistic_Regression']]
 p3_df.columns = [['Price','Logistic_Regression']]
 trainsize_i   = csv_s[18:-10]
 pair_s        = csv_s[-10:-4]
+
+import matplotlib
+matplotlib.use('Agg')
+# Order is important here.
+# Do not move the next import:
+import matplotlib.pyplot as plt
+
 p3_df.plot.line(title=pair_s+" Price and Logistic Regression Predictions From "+str(trainsize_i)+" Row Training Set")
-plt.show()
+png_s = '../public/plots/img'+str(trainsize_i)+pair_s+'.png'
+plt.savefig(png_s)
+plt.close()
+print('We should have a new plot now: '+png_s)
 'bye'
+
 
