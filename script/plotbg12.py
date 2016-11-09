@@ -33,11 +33,11 @@ ptea1_df['acc'] = acc_l
 # To see the most effective combinations of pair and trainsize, I should sort:
 print(ptea1_df.sort_values(by='eff', ascending=False).head(30))
 
-p0_df = ptea1_df.sort_values(by='eff', ascending=False).head(30)[['trainsize','pair']]
-print(p0_df.head())
+ptea2_df = ptea1_df.sort_values(by='eff', ascending=False).head(30)[['trainsize','pair']]
+print(ptea2_df.head())
 
-for idx_i in p0_df.index:
-  row         = p0_df.loc[idx_i]
+for idx_i in ptea2_df.index:
+  row         = ptea2_df.loc[idx_i]
   trainsize_s = row.trainsize
   pair_s      = row.pair
   csv_s       = '../csv/predictions'+trainsize_s+pair_s+'.csv'
