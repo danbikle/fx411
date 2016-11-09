@@ -16,8 +16,8 @@ if (len(sys.argv) != 2):
   print("~/anaconda3/bin/python plotbg11.py ../csv/predictions31000AUDUSD.csv")
   sys.exit()
 
-csv_in = sys.argv[1]
-p0_df  = pd.read_csv(csv_in)
+csv_s = sys.argv[1]
+p0_df  = pd.read_csv(csv_s, names=['ts','cp','piplead','problr','eff','acc'])
 print(p0_df.head())
 
 'bye'
