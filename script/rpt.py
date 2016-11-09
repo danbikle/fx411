@@ -12,7 +12,6 @@
 
 import pandas as pd
 import numpy  as np
-import pdb
 import glob
 
 fn_l = glob.glob('../csv/predictions*.csv')
@@ -34,7 +33,15 @@ pair_trainsize_eff_acc_df = pd.DataFrame({'pair':  pair_trainsize_eff_acc_a[:,0]
                                       ,'eff':      pair_trainsize_eff_acc_a[:,2]
                                       ,'acc':      pair_trainsize_eff_acc_a[:,3]
 })
-print(pair_trainsize_eff_acc_df.head())
 
+# I should change eff and acc to floats:
+eff_l    = [float(my_s) for my_s in pair_trainsize_eff_acc_df.eff]
+acc_l    = [float(my_s) for my_s in pair_trainsize_eff_acc_df.acc]
+ptea1_df = pair_trainsize_eff_acc_df.copy()[['pair','trainsize']]
+ptea1_df['eff'] = eff_l
+ptea1_df['acc'] = acc_l
+
+# To see the most effective combinations of pair and trainsize, I should sort:
+print(ptea1_df.sort_values(by='eff', ascending=False).head(30))
 
 'bye'
