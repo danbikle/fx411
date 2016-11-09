@@ -37,19 +37,19 @@ while row_i < len_i-1:
         green_l.append( green_l[row_i-1] - blue_delt_f )
 p1_df['Logistic_Regression'] = green_l
 # In pandas, how to create index from column?
-p2_df = p1_df.set_index(['dt'])
-p3_df = p2_df[['cp','Logistic_Regression']]
+p2_df         = p1_df.set_index(['dt'])
+p3_df         = p2_df[['cp','Logistic_Regression']]
 p3_df.columns = [['Price','Logistic_Regression']]
 trainsize_i   = csv_s[18:-10]
 pair_s        = csv_s[-10:-4]
-
+# Now I should plot the visualization:
 import matplotlib
 matplotlib.use('Agg')
 # Order is important here.
 # Do not move the next import:
 import matplotlib.pyplot as plt
-
-p3_df.plot.line(title=pair_s+" Price and Logistic Regression Predictions From "+str(trainsize_i)+" Row Training Set")
+title_s =pair_s+" Price and Logistic Regression Predictions From "+str(trainsize_i)+" Row Training Set"
+p3_df.plot.line(title=title_s, figsize=(11,7))
 png_s = '../public/plots/img'+str(trainsize_i)+pair_s+'.png'
 plt.savefig(png_s)
 plt.close()
