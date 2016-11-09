@@ -18,7 +18,7 @@ if (len(sys.argv) != 2):
 csv_s = sys.argv[1]
 p0_df  = pd.read_csv(csv_s, names=['ts','cp','piplead','problr','eff','acc'])
 p1_df       = p0_df.copy()[['ts','cp','eff']]
-p1_df['dt'] = pd.to_datetime(p1_df.ts, unit='s')
+p1_df['Date'] = pd.to_datetime(p1_df.ts, unit='s')
 
 # I should build the green data; it should start at same place as blue data:
 green_l = [p1_df.cp[0]]
@@ -37,7 +37,7 @@ while row_i < len_i-1:
         green_l.append( green_l[row_i-1] - blue_delt_f )
 p1_df['Logistic_Regression'] = green_l
 # In pandas, how to create index from column?
-p2_df         = p1_df.set_index(['dt'])
+p2_df         = p1_df.set_index(['Date'])
 p3_df         = p2_df[['cp','Logistic_Regression']]
 p3_df.columns = [['Price','Logistic_Regression']]
 trainsize_i   = csv_s[18:-10]
@@ -55,5 +55,3 @@ plt.savefig(png_s)
 plt.close()
 print('We should have a new plot now: '+png_s)
 'bye'
-
-
