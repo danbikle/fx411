@@ -18,9 +18,9 @@ describe 'This should start Chrome', :js => true do
     find(:xpath, "//a[@href='?page=logina']").click
     sleep 1
     within("#login-form") do
-      fill_in 'USERNAME', with: 'ann411'
+      fill_in 'USERNAME', with: 'bob1999'
       sleep 1
-      fill_in 'PASSWORD', with: 'annwasher3'
+      fill_in 'PASSWORD', with: 'year2k3k'
       sleep 1
       click_on 'Login'
       sleep 1
