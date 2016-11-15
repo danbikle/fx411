@@ -34,7 +34,7 @@ os.system(cmd1_s)
 
 wlen_i = 20
 jump_i = wlen_i # Avoids prediction 'overlap'
-for trainsize_i in range(9000, 109000, 2000):
+for trainsize_i in range(101000, 109000, 2000):
   print('Busy ooooooooooooooooooooooooooo')
   #trainsize_i = 17000 # Size of training data before the window AKA the test-window.
   # I should define the number of observations I hold a pair after I buy/sell it.
@@ -49,7 +49,7 @@ for trainsize_i in range(9000, 109000, 2000):
     ### jumpc_i    = int((len(p0_df)-trainsize_i-100) / jump_i)-1
     # Above expression keeps my jumps inside of p0_df.
     # Below I hard-code jumpc_i to integer which works well with random sample idea:
-    jumpc_i = 1000
+    jumpc_i = 2000
     for cnt_i in range(jumpc_i,0,-1):
       # I should build a model here from a random sample of data rather than all data:
       test_end_i    = random.randrange(trainsize_i+10*duration_i, (len(p0_df)-duration_i))
